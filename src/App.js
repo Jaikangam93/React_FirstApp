@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import Ninjas from './Ninjas';
+import AddNinja from './AddNinja';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state ={
+    ninjas : [
+      { name: 'Madan', age: 21, belt: 'Yellow', id:1 },
+      { name: 'Angam', age: 26, belt: 'black', id:2 },
+      { name: 'Philip', age: 32, belt: 'Red', id:3}
+    ]
+  }
+  addNinja = (ninja) => {
+    ninja.id = Math.random();
+    let ninjas = [...this.state.ninjas, ninja];
+    this.setState({
+      ninjas: ninjas
+    })
+  }
+  render() {
+    return (
+      <div className="App">
+        <h1>Welocome to React JS </h1>
+        <Ninjas  ninjas={this.state.ninjas}/> 
+        <AddNinja addNinja={this.addNinja}/> 
+      </div>
+    );
+  }
 }
-
 export default App;
+
